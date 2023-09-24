@@ -7,10 +7,13 @@ import Transaction, { TRANSACTION_TYPES } from '../src/models/transaction'
 import { randomInt, randomUUID } from "crypto";
 import { generateRandomNumberString, randomEnumValue } from "../src/utils/general";
 
-const mongoDB = process.env.MONGODB_TEST_URL || "mongodb://127.0.0.1/qred";
+const mongoDB = process.env.MONGODB_URL || "mongodb://localhost/case_study";
+console.log("MongoDB url is:", mongoDB)
 
-before(() => {
-  connect(mongoDB);
+before(async function() {
+  this!.timeout(10000);
+  await connect(mongoDB)
+  console.log("Connected to MongoDB")
   connection
     .on("error", error => console.warn("Warning", error));
 });

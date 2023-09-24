@@ -1,11 +1,12 @@
 {
-  "name": "qred2",
+  "name": "case-study",
   "version": "1.0.0",
   "description": "",
   "main": "src/server.ts",
   "scripts": {
     "test": "mocha --exit",
-    "start": "ts-node-dev src/server.ts"
+    "start": "ts-node-dev src/server.ts",
+    "testAndRun": "mocha --exit && ts-node-dev src/server.ts"
   },
   "keywords": [],
   "author": "",

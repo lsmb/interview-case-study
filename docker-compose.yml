@@ -1,0 +1,17 @@
+services:
+  mongodb:
+    image: mongo
+    restart: always
+    ports:
+      - "27016:27017"
+  case-study:
+    image: "case-study:latest"
+    build: .
+    user: 1000:1000
+    environment:
+      MONGODB_URL: mongodb://mongodb:27017/case_study
+    depends_on: 
+      - mongodb
+    ports:
+      - 8080:8080
+
