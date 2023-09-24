@@ -2,6 +2,7 @@ import { Router, Request, Response } from 'express';
 import Company from '../models/company'
 import Transaction from '../models/transaction'
 import Invoice from '../models/invoice'
+import CardDetail from '../models/card_detail'
 import { BackendError, COMPANY_NOT_FOUND, NOT_FOUND } from '../utils/error'
 
 export const company = Router();
@@ -58,7 +59,7 @@ company.get('/:id/transactions/:transactionId', async (req: Request, res: Respon
     if (!company) throw new BackendError(COMPANY_NOT_FOUND)
 
     const transaction = await Transaction.where({ _id: transactionId, company })
-      .findOne().populate(['cardDetails'])
+      .findOne().populate({ path: 'cardDetails', model: CardDetail })
 
     if (!transaction) throw new BackendError(NOT_FOUND)
 

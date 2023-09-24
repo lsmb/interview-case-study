@@ -21,6 +21,8 @@ before(async function() {
 beforeEach(async () => {
   await Company.deleteMany({})
   await CardDetail.deleteMany({})
+  await Transaction.deleteMany({})
+  await Invoice.deleteMany({})
 
   const testCompany = new Company({
     name: "Company 1",
